@@ -1,0 +1,58 @@
+# importing the modules
+import docx
+from docx.shared import Inches
+
+doc = docx.Document(
+    'C:/Users/Gopi Naidu/Downloads/SAHLD - Solution Architecture  High-Level Design (SAHLD)-template-VoLTEspecific-20.8_baselined.docx')
+all_paras = doc.paragraphs
+len(all_paras)
+
+for para in all_paras:
+    print(para.text)
+    print("-------")
+
+# Adding a page break
+doc.add_page_break()
+# add heading into the file
+doc.add_heading("This is level 1 heading", 0)
+doc.add_paragraph(
+    "In untrusted Wi-Fi access, mobility is supported between Wi-Fi access and a co-existing LTE access network. Handovers may occur between the Packet Switched (PS) accesses, based on the common functionality of the evolved packet core. Although the SCC AS of Nokia TAS (MCS profile) and ATCF/ATGW functionality (provided by Nokia SBC) are not required for the PS-PS handover, VoWiFi calls are always anchored in the respective domain transfer anchor in anticipation of a future SRVCC or SRVCC enhanced with ATCF and ATGW event after transfer to LTE. The main characteristics of PS mobility are:")
+# saving the heading and paragraphs into the file
+doc.save(
+    "C:/Users/Gopi Naidu/Downloads/SAHLD - Solution Architecture  High-Level Design (SAHLD)-template-VoLTEspecific-20.8_baselined.docx")
+# adding another heading to the file
+doc.add_paragraph("This is the second paragraph of a MS Word file.")
+doc.save(
+    "C:/Users/Gopi Naidu/Downloads/SAHLD - Solution Architecture  High-Level Design (SAHLD)-template-VoLTEspecific-20.8_baselined.docx")
+third_para = doc.add_paragraph("This is the third paragraph.")
+# aading another
+third_para.add_run(" this is a section at the end of third paragraph")
+doc.save(
+    "C:/Users/Gopi Naidu/Downloads/SAHLD - Solution Architecture  High-Level Design (SAHLD)-template-VoLTEspecific-20.8_baselined.docx")
+doc.add_heading("adding image into this page", 1)
+doc.save(
+    "C:/Users/Gopi Naidu/Downloads/SAHLD - Solution Architecture  High-Level Design (SAHLD)-template-VoLTEspecific-20.8_baselined.docx")
+# adding picture into the file
+doc.add_picture("F:/unnamed.jpg", width=docx.shared.Inches(5), height=docx.shared.Inches(7))
+doc.save(
+    "C:/Users/Gopi Naidu/Downloads/SAHLD - Solution Architecture  High-Level Design (SAHLD)-template-VoLTEspecific-20.8_baselined.docx")
+
+# adding table into the input file
+doc = docx.Document()
+doc.add_heading('Nokia_product', 0)
+data = (
+    (1, 'product 1'),
+    (2, 'Cost 2'),
+    (3, 'Review 3')
+)
+table = doc.add_table(rows=1, cols=2)
+row = table.rows[0].cells
+row[0].text = 'Id'
+row[1].text = 'Name'
+for id, name in data:
+    row = table.add_row().cells
+    row[0].text = str(id)
+    row[1].text = name
+table.style = 'Colorful List'
+doc.save(
+    "C:/Users/Gopi Naidu/Downloads/SAHLD - Solution Architecture  High-Level Design (SAHLD)-template-VoLTEspecific-20.8_baselined.docx")
